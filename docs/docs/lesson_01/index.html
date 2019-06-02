@@ -119,16 +119,8 @@ https://github.com/alex-shpak/hugo-book
 
 <p>Взаимодействие ботов с людьми основано на HTTP-запросах. С первых дней появления API ботов, я использую библиотеку <a href="https://github.com/eternnoir/pyTelegramBotAPI">pyTelegramBotAPI</a>, которая берет на себя все нюансы отправки и получения запросов, позволяя сконцентрироваться непосредственно на логике. Установка библиотеки предельно простая:</p>
 
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none">pip install pytelegrambotapi
-python3</code></pre></td></tr></table>
-</div>
-</div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none">pip install pytelegrambotapi
+python3</code></pre></div>
 
 <p><center>
 <figure style="padding: 0.25rem; margin: 1rem 0">
@@ -145,16 +137,8 @@ python3</code></pre></td></tr></table>
 
 <p>Ну, довольно слов, перейдем к делу. В качестве практики к первому уроку, напишем бота, повторяющему присланное текстовое сообщение. Создадим каталог, а внутри него создадим 2 файла: <code>bot.py</code> и <code>config.py</code>. Я рекомендую выносить различные константы и настройки в файл <code>config.py</code>, дабы не загромождать другие. В файл <code>config.py</code> впишем:</p>
 
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none"># -*- coding: utf-8 -*-
-token = &#39;1234567890:AAE_abCDEFghijKLmNOpqRsTuVWxyz&#39;</code></pre></td></tr></table>
-</div>
-</div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none"># -*- coding: utf-8 -*-
+token = &#39;1234567890:AAE_abCDEFghijKLmNOpqRsTuVWxyz&#39;</code></pre></div>
 
 <p>⚠️ TODO - ссылка!
 Теперь надо научить бота реагировать на сообщения. Напишем обработчик, который будет реагировать на все текстовые сообщения. (напоминаю: чтобы понять хэндлеры, прочтите этот доп.материал)</p>
@@ -174,38 +158,14 @@ def repeat_all_messages(message): # Название функции не игр�
 
 <p>Теперь запустим бесконечный цикл получения новых записей со стороны Telegram:</p>
 
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none">if __name__ == &#39;__main__&#39;:
-    bot.polling(none_stop=True)</code></pre></td></tr></table>
-</div>
-</div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none">if __name__ == &#39;__main__&#39;:
+    bot.polling(none_stop=True)</code></pre></div>
 
 <p>Функция polling запускает т.н. <a href="http://www.pubnub.com/blog/http-long-polling/">Long Polling</a>, а параметр <code>none_stop=True</code> говорит, что бот должен стараться не прекращать работу при возникновении каких-либо ошибок. При этом, само собой, за ботом нужно следить, ибо сервера Telegram периодически перестают отвечать на запросы или делают это с большой задержкой приводя к <a href="https://ru.wikipedia.org/wiki/Список_кодов_состояния_HTTP#5xx">ошибкам 5xx</a>)</p>
 
 <p>Итак, полный код файла <code>bot.py</code> выглядит следующим образом:</p>
 
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none"># -*- coding: utf-8 -*-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none"># -*- coding: utf-8 -*-
 import config
 import telebot
 
@@ -216,9 +176,7 @@ def repeat_all_messages(message): # Название функции не игр�
     bot.send_message(message.chat.id, message.text)
 
 if __name__ == &#39;__main__&#39;:
-     bot.polling(none_stop=True)</code></pre></td></tr></table>
-</div>
-</div>
+     bot.polling(none_stop=True)</code></pre></div>
 
 <p>Готово! Осталось запустить бота: <code>python3 bot.py</code></p>
 

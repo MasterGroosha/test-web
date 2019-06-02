@@ -12,7 +12,7 @@
 <title>
   
     
-    Урок 2
+    Урок 2. “Угадай мелодию”. Подготовка
   
  | Пишем ботов для Telegram на языке Python</title>
 
@@ -82,7 +82,7 @@ https://github.com/alex-shpak/hugo-book
   <strong>
   
     
-    Урок 2
+    Урок 2. “Угадай мелодию”. Подготовка
   
 </strong>
 </header>
@@ -99,29 +99,7 @@ https://github.com/alex-shpak/hugo-book
 
 <p>Итак, для начала, подготовим аудиофайлы для отправки. Чтобы не усложнять никому жизнь, будем отправлять аудио как голосовые заметки в формате OGG, а не как музыку. Я взял 5 никому не известных песен, сделал из них 15-20-секундные нарезки, сконвертировал в *.ogg и положил в папку &ldquo;music&rdquo;. А теперь делаем финт ушами. Смотрите: мы будем отправлять юзерам одни и те же файлы много-много раз, давайте же побережем свой трафик и дисковое пространство на серверах Telegram, благо в документации написано, что можно отправлять различные объекты не как файлы, а по <code>file_id</code> (если файлы уже предварительно загружены). Прекрасно! Попросим нашего бота прислать нам наши аудиофайлы и их <code>file_id</code>:</p>
 
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none"># -*- coding: utf-8 -*-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none"># -*- coding: utf-8 -*-
 import telebot
 
 bot = telebot.TeleBot(config.token)
@@ -138,9 +116,7 @@ def find_file_ids(message):
 
 
 if __name__ == &#39;__main__&#39;:
-    bot.polling(none_stop=True)</code></pre></td></tr></table>
-</div>
-</div>
+    bot.polling(none_stop=True)</code></pre></div>
 
 <p><strong>Обратите внимание</strong>, в последней строке мы больше не используем бесконечный цикл While, из-за изменений в используемой библиотеке. В данном случае по команде /test бот будет отправлять наши файлы вместе с их file_id. Записываем эти file_id куда-нибудь.</p>
 
@@ -175,39 +151,7 @@ if __name__ == &#39;__main__&#39;:
 <p>Затем я залил этот файл на свой Linux-сервер, в терминале которого выполнил команду <code>sqlite3 music.db &lt; tttt.sql</code>, которая привела к созданию файла music.db, являющимся базой данных наших аудиозаписей.<br />
 Теперь создадим файл <code>SQLighter.py</code>. Т.к. Python изначально объектно-ориентированный язык, мне захотелось оформить работу с БД в виде класса. Пусть умные люди меня поправят, если я что-то сделал не так. Вот как выглядит наш класс:</p>
 
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none"># -*- coding: utf-8 -*-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-none" data-lang="none"># -*- coding: utf-8 -*-
 import sqlite3
 
 class SQLighter:
@@ -234,9 +178,7 @@ class SQLighter:
 
     def close(self):
         &#34;&#34;&#34; Закрываем текущее соединение с БД &#34;&#34;&#34;
-        self.connection.close()</code></pre></td></tr></table>
-</div>
-</div>
+        self.connection.close()</code></pre></div>
 
 <p>При каждом создании объекта SQLighter будет открываться отдельное соединение с БД и впоследствии закрываться. Мне кажется, это правильный подход, тем более, что бот изначально многопоточный (особенность библиотеки).</p>
 
