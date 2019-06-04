@@ -11,16 +11,6 @@
     
     
     <item>
-      <title></title>
-      <link>https://mastergroosha.github.io/test-web/docs/hidden/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://mastergroosha.github.io/test-web/docs/hidden/</guid>
-      <description>This page is hidden in menu Quondam non pater est dignior ille Eurotas Latent te facies Lorem markdownum arma ignoscas vocavit quoque ille texit mandata mentis ultimus, frementes, qui in vel. Hippotades Peleus pennas conscia cuiquam Caeneus quas.
- Pater demittere evincitque reddunt Maxime adhuc pressit huc Danaas quid freta Soror ego Luctus linguam saxa ultroque prior Tatiumque inquit Saepe liquitur subita superata dederat Anius sudor  Cum honorum Latona O fallor in sustinui iussorum equidem.</description>
-    </item>
-    
-    <item>
       <title>Урок 1. Введение, простой echo-бот</title>
       <link>https://mastergroosha.github.io/test-web/docs/lesson_01/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -49,6 +39,16 @@
       <guid>https://mastergroosha.github.io/test-web/docs/lesson_11/</guid>
       <description>Общая часть Полезных ботов мы уже умеем делать (если вам вдруг так не кажется, перечитайте первые уроки), теперь пора делать, кхм, «смышлённых».
 Но для начала – немного теории. Будем считать, что диалог пользователя с ботом можно разбить на логические части: начало диалога, запрос одной информации, запрос другой информации, возврат к определенному этапу диалога, конец диалога. При этом можно сказать, что при каждом сообщении пользователя, его состояние (или состояние бота, с какой стороны посмотреть) меняется, и между этими состояниями осуществляются переходы.</description>
+    </item>
+    
+    <item>
+      <title>Урок 12. Запускаем несколько ботов на одном сервере</title>
+      <link>https://mastergroosha.github.io/test-web/docs/lesson_12/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mastergroosha.github.io/test-web/docs/lesson_12/</guid>
+      <description>Введение Для тех, у кого дежавю↕Если вам вдруг кажется, что нижеприведённый текст вы уже где-то видели, то вы не ошиблись: материал был когда-то давно разбит на две части и располагался в секции «Дополнительные материалы».По моему мнению (а оно может не совпадать с вашим), боты на вебхуках надёжнее ботов, использующих поллинг.
+Связано это в первую очередь с моими воспоминаниями из августа-сентября 2015 года, когда каждую ночь падали боты из-за Gateway Timeout&amp;rsquo;ов.</description>
     </item>
     
     <item>

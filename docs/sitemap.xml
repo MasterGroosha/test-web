@@ -3,10 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://mastergroosha.github.io/test-web/docs/hidden/</loc>
-  </url>
-  
-  <url>
     <loc>https://mastergroosha.github.io/test-web/categories/</loc>
     <priority>0</priority>
   </url>
@@ -35,6 +31,10 @@
   
   <url>
     <loc>https://mastergroosha.github.io/test-web/docs/lesson_11/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mastergroosha.github.io/test-web/docs/lesson_12/</loc>
   </url>
   
   <url>
